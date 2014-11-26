@@ -5,14 +5,25 @@
 #include <sys/prctl.h>
 #include <unistd.h>
 #include <errno.h>
-#include <linux/capability.h>
+#include <sys/types.h>
+#include <pwd.h>
+#include <grp.h>
+/* Copied from bionic source repo because ndk is lacking
+ * some important constants. */
+/* commit 1f5706c7eb8aacb76fdfa3ef03944be229510b66 */
+#include "capability.h"
+#include "securebits.h"
+#include "prctl.h"
 
-/* android-20 doesn't support these by default */
+/* The android-20 ndk doesn't support these by default */
 #ifndef PR_CAPBSET_READ
 #define PR_CAPBSET_READ 23
 #endif
 #ifndef PR_CAPBSET_DROP
 #define PR_CAPBSET_DROP 24
+#endif
+#ifndef PR_SET_NO_NEW_PRIVS
+#define PR_SET_NO_NEW_PRIVS 38
 #endif
 
 int set_mac_addr(char * iface, char * mac);
