@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <sys/prctl.h>
 #include <unistd.h>
 #include <errno.h>
 #include <sys/types.h>
